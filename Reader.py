@@ -24,7 +24,6 @@ def readBigMac(data=bigMac):
     with open (data, newline="") as file:
         reader = csv.reader(file)
         for row in reader:
-            #lst = row[0].split(sep=",")
             burgerList.append(row)
 
         # removes the data legend
