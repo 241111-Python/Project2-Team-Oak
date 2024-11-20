@@ -10,3 +10,4 @@ class Burger:
     
     def info(self):
         return str(f"Date: {self.date}\nCurrency Code: {self.code}\nCountry: {self.country}\nLocal Prince: {self.localPrice}\nExchange Rate: {self.exchangeRate}\nDollar Price: ${self.USD}")
+
