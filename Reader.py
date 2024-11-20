@@ -1,4 +1,5 @@
 import csv
+from burger import Burger
 bigMac = "bigmac.csv"
 
 # reads the data and returns a list of Burger objects
