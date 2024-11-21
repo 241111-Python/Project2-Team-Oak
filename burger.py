@@ -8,6 +8,8 @@ class Burger:
         self.exchangeRate = exchangeRate
         self.USD = USD
     
+    def __str__(self):
+        return f'[{self.date} -- {self.code} -- {self.country} -- {self.localPrice} -- {self.exchangeRate} -- {self.USD}]'
+    
     def info(self):
         return str(f"Date: {self.date}\nCurrency Code: {self.code}\nCountry: {self.country}\nLocal Prince: {self.localPrice}\nExchange Rate: {self.exchangeRate}\nDollar Price: ${self.USD}")
-
