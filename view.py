@@ -1,5 +1,8 @@
 menu_options = {
-    "Quit": "x"
+    "Quit": "x",
+    "Examine an entry": "e", 
+    "Filter on an feature": "f",
+    "Sort on a feature": "s"
 }
 
 def print_menu_options():
