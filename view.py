@@ -2,7 +2,8 @@ menu_options = {
     "Quit": "x",
     "Examine an entry": "e", 
     "Filter on an feature": "f",
-    "Sort on a feature": "s"
+    "Sort on a feature": "s",
+    "upload data(csv only)": "u"
 }
 
 def print_menu_options():
