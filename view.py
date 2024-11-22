@@ -1,4 +1,4 @@
-menu_options = {
+menuOptions = {
     "Quit": "x",
     "Examine an entry": "e", 
     "Filter on an feature": "f",
@@ -6,7 +6,7 @@ menu_options = {
 }
 
 def print_menu_options():
-    for option, command in menu_options.items():
+    for option, command in menuOptions.items():
         print(f"{option:.<30}{command}")
 
 def display_countries(burgerSet):
