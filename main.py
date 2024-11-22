@@ -1,6 +1,7 @@
 import controller
 import view
 
+
 if __name__ == "__main__":
     # Print menu options
     view.print_menu_options()

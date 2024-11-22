@@ -3,6 +3,11 @@ import csv
 import view
 import util
 import Reader
+from Model import Model
+
+# TODO: this might not belong here.
+burgerData = Reader.read_big_mac()
+model = Model(burgerData)
 
 def handle_user_input(userSelection: str):
     match userSelection:
@@ -40,11 +45,7 @@ def handle_examine_entry():
     print("Enter a date (yyyy-mm-dd) and country, separated by a comma: ")
     date, country = input().split(",")
 
-    # Validate user inputs
-    util.validate_date(date)
-    util.validate_country(country)
-
-    burgers = Reader.get_burger_by_date_and_country(date, country)
+    burgers = model.get_burger_by_date_and_country(date, country)
     for burger in burgers:
         print(burger)
 
