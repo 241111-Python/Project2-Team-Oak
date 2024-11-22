@@ -36,4 +36,3 @@ def get_countries(data=bigMac) -> set:
 def get_burger_by_date_and_country(date, country):
     burgers = read_big_mac(data=bigMac)
     return [burger for burger in burgers if burger.date == date and burger.country == country]
-
