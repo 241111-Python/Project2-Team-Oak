@@ -29,18 +29,3 @@ def getCountries(data=bigMac) -> set:
     for brg in lst:
         countries.add(brg.country)
     return countries
-
-def displayCountries(data=bigMac):
-    st = list(getCountries(data))
-    st.sort()
-    row = []
-    for i in st:
-        if len(row) < 3:
-            row.append(i)
-        else:
-            row.append(i)
-            print(f'{row[0]:21}{row[1]:21}{row[2]:21}{row[3]:21}')
-            row.clear()
-    # if the number of our countries isn't divisible by 4, this prints out the leftovers
-    for i in row:
-        print(f'{i:21}', end="")
