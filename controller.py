@@ -20,6 +20,8 @@ def handle_user_input(userSelection: str):
             handle_sort_data()
         case "u":
             handle_upload_data()
+        case "c":
+            handle_print_countries()
 
 def exit_game():
     sys.exit(0)
@@ -53,3 +55,6 @@ def handle_filter_data():
 
 def handle_sort_data():
     print("Sorting data...")
+
+def handle_print_countries():
+    view.display_countries(model.get_countries())

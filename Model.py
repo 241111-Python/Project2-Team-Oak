@@ -13,7 +13,12 @@ class Model:
         except Exception as e:
             print("An error occured in validating the data:", e)
             return None
-
+        
+    def get_countries(self) -> set:
+        countries = set()
+        for brg in self.data:
+            countries.add(brg.country)
+        return countries
      
     def validate_date(self, date):
         print("Validating date...")

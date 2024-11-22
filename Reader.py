@@ -26,12 +26,7 @@ def read_big_mac(data=bigMac):
         burgerObj.append(brg)
     return burgerObj
 
-def get_countries(data=bigMac) -> set:
-    lst = read_big_mac(data)
-    countries = set()
-    for brg in lst:
-        countries.add(brg.country)
-    return countries
+
 
 def get_burger_by_date_and_country(date, country):
     burgers = read_big_mac(data=bigMac)
