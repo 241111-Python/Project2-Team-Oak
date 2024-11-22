@@ -19,3 +19,8 @@ Write a python application to provide an interface and analysis of the data sour
 - Allow the user to choose which file/source to read data from
 - Provide an option to the user to examine individual entries
 - Provide an option to the user to examine sets of similar data based on a sort and/or filter functionality
+
+## Style Guide
+- Classes: PascalCase
+- Functions and Methods: camelCase
+- variables: snake_case
