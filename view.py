@@ -9,7 +9,7 @@ def print_menu_options():
     for option, command in menuOptions.items():
         print(f"{option:.<30}{command}")
 
-def displayCountries(burgerSet):
+def display_countries(burgerSet):
     lst = list(burgerSet)
     lst.sort()
     row = []
