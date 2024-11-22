@@ -1,7 +1,6 @@
 import sys
 import csv
 import view
-import util
 import Reader
 from Model import Model
 
