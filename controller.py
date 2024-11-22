@@ -3,8 +3,6 @@ import csv
 import view
 import util
 import Reader
-def handle_user_input(user_selection: str):
-    match user_selection:
 
 def handle_user_input(userSelection: str):
     match userSelection:
