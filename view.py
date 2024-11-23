@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+from burger import Burger
 menuOptions = {
     "Quit": "x",
     "Examine an entry": "e", 
@@ -40,3 +42,29 @@ def columnar_printer(data, numRows=1):
     for i in row:
         result = [formatDatum(d) for d in row]
         print("".join(result))
+
+def graph_usd_year_by_country(data, country):
+    x = []
+    y = []
+    for i in data:
+        if i.country == country:
+            x.append(i.date_as_float())
+            y.append(i.USD)
+    plt.plot(x,y)
+    plt.xlabel("Year")
+    plt.ylabel("USD")
+    plt.title(country)
+    plt.savefig(f'./graphs/usd_{country}.png')
+
+def graph_exchange_year_by_country(data, country):
+    x = []
+    y = []
+    for i in data:
+        if i.country == country:
+            x.append(i.date_as_float())
+            y.append(i.exchangeRate)
+    plt.plot(x,y)
+    plt.xlabel("Year")
+    plt.ylabel("Exchange Rate")
+    plt.title(country)
+    plt.savefig(f'./graphs/exchange_{country}.png')
