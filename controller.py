@@ -44,11 +44,15 @@ def handle_examine_entry():
     # ask for the entry the user wants
     # TODO: The data is sparsely populated, so an arbitrary date is not going to work. 
     print("Enter a date (yyyy-mm-dd) and country, separated by a comma: ")
-    date, country = input().split(",")
+    try:
+        date, country = input().split(",")
+        country = country.strip()
+        burgers = model.get_burger_by_date_and_country(date, country)
+        for burger in burgers:
+            print(burger)
+    except Exception as e:
+        print("An error occured in validating the data:", e)
 
-    burgers = model.get_burger_by_date_and_country(date, country)
-    for burger in burgers:
-        print(burger)
 
 def handle_filter_data():
     print("Filtering data...")

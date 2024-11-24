@@ -6,13 +6,9 @@ class Model:
 
     # Here is where you would put any sorting methods, filtering methods, etc on the data. 
     def get_burger_by_date_and_country(self, date, country):
-        try:
-            self.validate_date(date)
-            self.validate_country(country)
-            return [burger for burger in self.data if burger.date == date and burger.country == country]   
-        except Exception as e:
-            print("An error occured in validating the data:", e)
-            return None
+        self.validate_date(date)
+        self.validate_country(country)
+        return [burger for burger in self.data if burger.date == date and burger.country == country]   
         
     def get_countries(self) -> set:
         countries = set()
