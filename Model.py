@@ -120,3 +120,33 @@ class Model:
                 lst.append(i.USD)
         return max(lst) - min(lst) 
 
+    # This returns a list of (country, ppp) Tuples.
+    # It defaults to using the US as a metric, but a different country can be used in its place
+    def ppp_date_report(self, date, relativeCountry="United States"):
+        lst=[]
+        ppp = []
+        delta = 1
+        for i in self.data:
+            if i.date == date:
+                lst.append(i)
+                if i.country == relativeCountry:
+                    delta = i.USD
+        for i in lst:
+            ppp.append((i.country, delta/i.USD))
+        return ppp
+
+    # Similar to the above function, but the return is a list of (date, ppp) tuples    
+    def ppp_country_report(self, country, relativeCountry="United States"):
+        lst = []
+        rel = []
+        ppp = []
+        for i in self.data:
+            if i.country == country:
+                lst.append(i)
+            if i.country == relativeCountry:
+                rel.append(i)
+        for i in lst:
+            for x in rel:
+                if i.date == x.date:
+                    ppp.append((i.date, x.USD/i.USD))
+        return ppp
