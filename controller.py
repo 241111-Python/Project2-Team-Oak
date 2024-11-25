@@ -22,6 +22,8 @@ def handle_user_input(userSelection: str):
             handle_upload_data()
         case "c":
             handle_print_countries()
+        case "g":
+            handle_graph_data()
 
 def exit_game():
     sys.exit(0)
@@ -53,7 +55,6 @@ def handle_examine_entry():
     except Exception as e:
         print("An error occured in validating the data:", e)
 
-
 def handle_filter_data():
     print("Filtering data...")
 
@@ -62,3 +63,19 @@ def handle_sort_data():
 
 def handle_print_countries():
     view.display_countries(model.get_countries())
+
+def handle_graph_data():
+    c1 = input("Would you like to see the change in USD price over time or the exchange rate over time?\n(USD/Rate): ").lower()
+    while (c1 not in ['usd','rate']):
+        print("Invalid input")
+        c1 = input("Would you like to see the change in USD price over time or the exchange rate over time?\n(USD/Rate): ").lower()    
+    
+    c2 = input("Which Country would you like to graph? ")
+
+    while not model.validate_country(c2):
+        c2 = input("Which Country would you like to graph? ")
+    
+    if c1 == 'usd':
+        view.graph_usd_year_by_country(burgerData, c2)
+    elif c1 == 'rate':
+        view.graph_exchange_year_by_country(burgerData, c2)
