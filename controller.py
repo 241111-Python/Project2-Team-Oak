@@ -3,6 +3,8 @@ import csv
 import view
 import Reader
 from Model import Model
+from burger import Burger
+import report
 
 # TODO: this might not belong here.
 burgerData = Reader.read_big_mac()
@@ -108,3 +110,42 @@ def handle_graph_data():
 
 def handle_print_dates():
     view.display_dates(model.get_dates())
+
+if __name__ == "__main__":
+    import stats
+
+    dates = model.get_dates()
+    names = ["Date", "Mean", "Median"]
+    means = []
+    medians = []
+    burgerData = model.sort_burgers_by_attr(model.data, "date")
+    currentDate = burgerData[0].date
+    currentUSD = []
+    for burger in burgerData:
+        if burger.date != currentDate:
+            # Process current burger data and save it in data
+            meanUSD = stats.mean(currentUSD)
+            medianUSD = stats.median(currentUSD)
+            means.append(meanUSD)
+            medians.append(medianUSD)
+            currentUSD = []
+            currentDate = burger.date
+        else:
+            currentUSD.append(burger.USD)
+
+    # Process the final data
+    meanUSD = stats.mean(currentUSD)
+    means.append(meanUSD)
+    medianUSD = stats.median(currentUSD)
+    medians.append(medianUSD)
+
+
+
+    means = [str(d) for d in means]
+    medians = [str(d) for d in medians]
+    print(report.generate_report(names, zip(dates, means, medians), [15, 15, 15]))
+
+
+
+
+    

@@ -47,10 +47,10 @@ class Model:
             raise InvalidCountry(f"{country} is not correctly formatted, or is not a string.")
         return True
 
-    def get_mean_usd_by_year(self, year):
+    def get_mean_usd_by_date(self, date):
         lst = []
         for i in self.data:
-            if i.date[:4] == year:
+            if i.date == date:
                 lst.append(i.USD)
         return stats.mean(lst)
     

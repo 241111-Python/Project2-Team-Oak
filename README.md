@@ -8,7 +8,7 @@ Users will be able to access various statistics about the data set.
     - If PPP > 1, then the goods are cheaper in the second country, and their currency is undervalued (retire there).
     - If PPP < 1, then goods are more expensive in the second country, and their current is overvalued (don't retire there).
 - PPP for each region. We can create a heat map that identifies which countries have a stronger currency (in terms of the Big Mac Index). 
-- Analyze the change in the PPP over time for a specified countries. 
+- Analyze the change in the PPP over time for specified countries. 
 
 
 ## Requirements
