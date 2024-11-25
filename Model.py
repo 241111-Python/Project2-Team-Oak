@@ -16,6 +16,7 @@ class Model:
         lst = []
         for brg in self.data:
             countries.add(brg.country)
+
         for i in countries:
             lst.append(i)
         return sorted(lst)
@@ -28,6 +29,7 @@ class Model:
         for i in dates:
             lst.append(i)
         return sorted(lst)
+
      
     def validate_date(self, date):
         print("Validating date...")
