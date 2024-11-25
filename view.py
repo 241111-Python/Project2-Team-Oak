@@ -73,5 +73,19 @@ def graph_exchange_year_by_country(data, country):
     plt.savefig(f'./graphs/exchange_{country}.png')
     plt.show()
 
+#def graph_ppp_year_by_country(data, country):
+#    x = []
+#    y = []
+#    for i in data:
+#        if i.country == country:
+#            x.append(i.date_as_float())
+#            y.append()
+#    plt.plot(x,y)
+#    plt.xlabel("Year")
+#    plt.ylabel("Purchasing Power Parity")
+#    plt.title(country)
+#    plt.savefig(f'./graphs/ppp_{country}.png')
+#    plt.show()    
+
 def display_dates(dateSet):
     columnar_printer(dateSet, numRows=4)

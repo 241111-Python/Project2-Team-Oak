@@ -1,4 +1,5 @@
 from errors import InvalidCountry, InvalidDate
+import statistics as stats
 import re
 import Reader as r
 class Model:
@@ -35,6 +36,87 @@ class Model:
             raise InvalidCountry(f"{country} is not correctly formatted, or is not a string.")
         return True
 
-if __name__ == "__main__":
-    model = Model(r.read_big_mac())
-    model.validate_country("Hong Kong")
+    def get_mean_usd_by_year(self, year):
+        lst = []
+        for i in self.data:
+            if i.date[:4] == year:
+                lst.append(i.USD)
+        return stats.mean(lst)
+    
+    def get_median_usd_by_year(self, year):
+        lst = []
+        for i in self.data:
+            if i.date[:4] == year:
+                lst.append(i.USD)
+        return stats.median(lst)
+    
+    def get_max_usd_by_year(self, year):
+        lst = []
+        for i in self.data:
+            if i.date[:4] == year:
+                lst.append(i.USD)
+        return max(lst)
+
+    def get_min_usd_by_year(self, year):
+        lst = []
+        for i in self.data:
+            if i.date[:4] == year:
+                lst.append(i.USD)
+        return min(lst) 
+
+    def get_stdev_usd_by_year(self, year):
+        lst = []
+        for i in self.data:
+            if i.date[:4] == year:
+                lst.append(i.USD)
+        return stats.stdev(lst)  
+    
+    def get_range_usd_by_year(self, year):
+        lst = []
+        for i in self.data:
+            if i.date[:4] == year:
+                lst.append(i.USD)
+        return max(lst) - min(lst) 
+    
+    def get_mean_usd_by_country(self, country):
+        lst = []
+        for i in self.data:
+            if i.country == country:
+                lst.append(i.USD)
+        return stats.mean(lst)
+    
+    def get_median_usd_by_country(self, country):
+        lst = []
+        for i in self.data:
+            if i.country == country:
+                lst.append(i.USD)
+        return stats.median(lst)
+    
+    def get_max_usd_by_country(self, country):
+        lst = []
+        for i in self.data:
+            if i.country == country:
+                lst.append(i.USD)
+        return max(lst)
+
+    def get_min_usd_by_country(self, country):
+        lst = []
+        for i in self.data:
+            if i.country == country:
+                lst.append(i.USD)
+        return min(lst) 
+
+    def get_stdev_usd_by_country(self, country):
+        lst = []
+        for i in self.data:
+            if i.country == country:
+                lst.append(i.USD)
+        return stats.stdev(lst)  
+    
+    def get_range_usd_by_country(self, country):
+        lst = []
+        for i in self.data:
+            if i.country == country:
+                lst.append(i.USD)
+        return max(lst) - min(lst) 
+
