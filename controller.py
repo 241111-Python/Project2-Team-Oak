@@ -114,7 +114,7 @@ def handle_print_dates():
     view.display_dates(model.get_dates())
 
 if __name__ == "__main__":
-    import stats
+    import statistics as stats
 
     dates = model.get_dates()
     names = ["Date", "Mean", "Median"]
@@ -145,7 +145,7 @@ if __name__ == "__main__":
 
     means = [str(d) for d in means]
     medians = [str(d) for d in medians]
-    print(report.generate_report(names, zip(dates, means, medians), [15, 15, 15]))
+    print(report.generate_report(names, zip(dates, means, medians), [15, 20, 15]))
 
 
 
