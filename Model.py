@@ -14,7 +14,7 @@ class Model:
         countries = set()
         for brg in self.data:
             countries.add(brg.country)
-        return countries
+        return sorted(list(countries))
      
     def validate_date(self, date):
         print("Validating date...")

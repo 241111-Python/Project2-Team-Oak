@@ -36,12 +36,12 @@ def columnar_printer(data, numRows=1):
             # print(row[0])
             result = [formatDatum(d) for d in row]
             # print(f'{row[0]:columnWidth}{row[1]:columnWidth}{row[2]:columnWidth}{row[3]:columnWidth}')
-            print("".join(result))
+            print(" ".join(result))
             row.clear()
     # if the number of our countries isn't divisible by numRows, this prints out the leftovers
     for i in row:
         result = [formatDatum(d) for d in row]
-        print("".join(result))
+        print(" ".join(result))
 
 def graph_usd_year_by_country(data, country):
     x = []
