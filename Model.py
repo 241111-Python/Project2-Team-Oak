@@ -13,23 +13,15 @@ class Model:
         
     def get_countries(self) -> set:
         countries = set()
-        lst = []
         for brg in self.data:
             countries.add(brg.country)
-
-        for i in countries:
-            lst.append(i)
-        return sorted(lst)
+        return sorted(list(countries))
     
     def get_dates(self):
         dates = set()
         for brg in self.data:
             dates.add(brg.date)
-        lst = []
-        for i in dates:
-            lst.append(i)
-        return sorted(lst)
-
+        return sorted(list(dates))
      
     def validate_date(self, date):
         print("Validating date...")
