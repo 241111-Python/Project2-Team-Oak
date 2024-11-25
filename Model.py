@@ -1,5 +1,6 @@
 from errors import InvalidCountry, InvalidDate
 import re
+import Reader as r
 class Model:
     def __init__(self, data=None):
         self.data = data
@@ -12,9 +13,23 @@ class Model:
         
     def get_countries(self) -> set:
         countries = set()
+        lst = []
         for brg in self.data:
             countries.add(brg.country)
-        return sorted(list(countries))
+
+        for i in countries:
+            lst.append(i)
+        return sorted(lst)
+    
+    def get_dates(self):
+        dates = set()
+        for brg in self.data:
+            dates.add(brg.date)
+        lst = []
+        for i in dates:
+            lst.append(i)
+        return sorted(lst)
+
      
     def validate_date(self, date):
         print("Validating date...")
@@ -27,3 +42,7 @@ class Model:
         if not re.fullmatch(r"^[A-Z][a-z]+$", country):
             raise InvalidCountry(f"{country} is not correctly formatted, or is not a string.")
         return True
+
+if __name__ == "__main__":
+    model = Model(r.read_big_mac())
+    model.validate_country("Hong Kong")
