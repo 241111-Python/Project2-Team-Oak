@@ -52,6 +52,8 @@ def handle_examine_entry():
         date, country = input().split(",")
         country = country.strip()
         burgers = model.get_burger_by_date_and_country(date, country)
+        if not burgers:
+            print(f"No data found for {country} on {date}")
         for burger in burgers:
             print(burger)
     except Exception as e:
