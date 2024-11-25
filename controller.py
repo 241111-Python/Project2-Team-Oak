@@ -24,6 +24,8 @@ def handle_user_input(userSelection: str):
             handle_print_countries()
         case "g":
             handle_graph_data()
+        case "d":
+            handle_print_dates()
 
 def exit_game():
     sys.exit(0)
@@ -79,3 +81,6 @@ def handle_graph_data():
         view.graph_usd_year_by_country(burgerData, c2)
     elif c1 == 'rate':
         view.graph_exchange_year_by_country(burgerData, c2)
+
+def handle_print_dates():
+    view.display_dates(model.get_dates())

@@ -7,7 +7,8 @@ menuOptions = {
     "Sort on a feature": "s",
     "Upload data(csv only)": "u",
     "Print countries": "c",
-    "Graph data by country": "g"
+    "Graph data by country": "g",
+    "Print dates": "d"
 }
 
 def print_menu_options():
@@ -71,3 +72,6 @@ def graph_exchange_year_by_country(data, country):
     plt.title(country)
     plt.savefig(f'./graphs/exchange_{country}.png')
     plt.show()
+
+def display_dates(dateSet):
+    columnar_printer(dateSet, numRows=4)
