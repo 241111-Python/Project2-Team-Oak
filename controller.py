@@ -61,6 +61,28 @@ def handle_examine_entry():
 
 def handle_filter_data():
     print("Filtering data...")
+    #1. filter as much as you want
+    #2. sort by 1 parameter
+    #2. filter the data by date, and choose how to sort(Name, local_price,dollar_ex,dollar_price)
+    try:
+        burgers = burgerData
+        filterCondition = True
+        while filterCondition != False:
+            filterCondition = input("How do you want to filter burgers? (date, code, country, localPrice, exchangeRate, USD) - type 'f' to stop filtering: ")
+            if filterCondition != 'f':
+                value = input("What is the value you want to look for?: ")
+                burgers = model.get_burger_by_attr(burgers, filterCondition, value)
+            else:
+                break
+        
+        sortCondition = input("How do you want to sort data? - type 'f' to stop sorting: ")
+        if sortCondition != 'f':
+            sortedBurgers = model.sort_burgers_by_attr(burgers, sortCondition)
+        else:
+            sortedBurgers = burgers
+        model.print_burgers(sortedBurgers)
+    except Exception as e:
+        print("An error occured in validating the data:", e)
 
 def handle_sort_data():
     print("Sorting data...")

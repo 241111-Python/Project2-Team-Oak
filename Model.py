@@ -7,10 +7,21 @@ class Model:
         self.data = data
 
     # Here is where you would put any sorting methods, filtering methods, etc on the data. 
+
+    def print_burgers(self, burgers):
+        for burger in burgers:
+            print(burger)
+
+    def sort_burgers_by_attr(self, burgers, attr):
+        return sorted(burgers, key=lambda burgers: getattr(burgers, attr))
+    
     def get_burger_by_date_and_country(self, date, country):
         self.validate_date(date)
         self.validate_country(country)
         return [burger for burger in self.data if burger.date == date and burger.country == country]   
+    
+    def get_burger_by_attr(self, burgers, attr, value):
+        return [burger for burger in burgers if getattr(burger, attr) == value]
         
     def get_countries(self) -> set:
         countries = set()
