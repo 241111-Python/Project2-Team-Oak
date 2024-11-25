@@ -31,7 +31,7 @@ class Model:
 
     def validate_country(self, country):
         print("Validating country...")
-        if not re.fullmatch(r"^[A-Z][a-z]+$", country):
+        if not re.fullmatch(r"^[A-Z][a-z]+(?: [A-Z][a-z]+)*$", country):
             raise InvalidCountry(f"{country} is not correctly formatted, or is not a string.")
         return True
 
