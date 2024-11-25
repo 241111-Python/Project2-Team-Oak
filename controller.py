@@ -91,10 +91,10 @@ def handle_print_countries():
     view.display_countries(model.get_countries())
 
 def handle_graph_data():
-    c1 = input("Would you like to see the change in USD price over time or the exchange rate over time?\n(USD/Rate): ").lower()
-    while (c1 not in ['usd','rate']):
+    c1 = input("Would you like to graph:\nUSD price over time \nExchange rate over time\nPPP over time\n(USD/Rate/PPP): ").lower()
+    while (c1 not in ['usd','rate','ppp']):
         print("Invalid input")
-        c1 = input("Would you like to see the change in USD price over time or the exchange rate over time?\n(USD/Rate): ").lower()    
+        c1 = input("Would you like to graph:\nUSD price over time \nExchange rate over time\nPPP over time\n(USD/Rate/PPP): ").lower()    
     
     c2 = input("Which Country would you like to graph? ")
 
@@ -105,6 +105,8 @@ def handle_graph_data():
         view.graph_usd_year_by_country(burgerData, c2)
     elif c1 == 'rate':
         view.graph_exchange_year_by_country(burgerData, c2)
+    elif c1 == 'ppp':
+        view.graph_ppp_year_by_country(model.ppp_country_report(c2), c2)
 
 def handle_print_dates():
     view.display_dates(model.get_dates())
