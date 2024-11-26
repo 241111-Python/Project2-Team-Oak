@@ -190,3 +190,14 @@ def handle_submenu_g():
                 else:
                     print("Invalid Input\n")
             loop = False
+
+def return_standard_report():
+    names, data = model.get_standard_report_statistics()
+    dates = model.get_dates()
+
+    # unpack and arrange data
+    data = [data[name] for name in names[1:]]
+    data = [dates] + data
+
+    widths = [15] * len(names)
+    return(report.generate_report(names, zip(*data), widths))
