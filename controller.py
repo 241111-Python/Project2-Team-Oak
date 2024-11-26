@@ -214,10 +214,6 @@ def handle_submenu_g():
                     print("Invalid Input\n")
             loop = False
 
-def return_standard_report():
-    names, data = model.get_standard_report_statistics()
-    dates = model.get_dates()
-
 def handle_generate_ppp_country_report(country: str) -> str:
     data = model.ppp_country_report(country)
     data = [(str(i), str(j)) for (i, j) in data]
@@ -235,10 +231,3 @@ def handle_generate_ppp_date_report(date: str):
 if __name__ == "__main__":
     pass
 
-
-    # unpack and arrange data
-    data = [data[name] for name in names[1:]]
-    data = [dates] + data
-
-    widths = [15] * len(names)
-    return(report.generate_report(names, zip(*data), widths))
