@@ -34,14 +34,14 @@ if __name__ == "__main__":
                     )
     
     parser.add_argument("--exit", "-x",
-                        type=str,
+                        action="store_true",
                         help="Run in headless mode for scripting purposes.")
 
     args = parser.parse_args()
 
     if args.filename:
         print(f"Processing file: {args.filename}")
-        controller.handle_upload_data()
+        controller.handle_upload_data(args.filename)
 
     if args.reports:
         additional_arguments = {"country": args.country, "date": args.date}

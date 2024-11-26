@@ -6,6 +6,7 @@ import Reader
 from Model import Model
 from burger import Burger
 import report
+import logger
 
 # TODO: this might not belong here.
 burgerData = Reader.read_big_mac()
@@ -35,15 +36,14 @@ def handle_user_input(userSelection: str):
 def exit_game():
     sys.exit(0)
 
-def handle_upload_data():
-    dataPath = input("upload your file (csv only): ")
+def handle_upload_data(dataPath=None):
+    global model
+    global burgerData
+    if not dataPath:
+        dataPath = input("upload your file (csv only): ")
     if dataPath[-4:] == ".csv":
-        with open(dataPath, 'r') as f:
-            reader = csv.reader(f)
-            next(reader)
-            for i, row in enumerate(reader):
-                if i < 5:
-                    print(row)
+        burgerData = Reader.read_big_mac(data=dataPath)
+        model = Model(burgerData)
     else:
         print("only csv allowed now")
 
@@ -51,20 +51,16 @@ def handle_generate_reports(report: str, additionalArgs: dict) -> None:
     result = ""
     fileName = ""
     if report == "standard":
-        filename=f"standard_report.txt"
+        fileName=f"standard_report.txt"
         result = handle_generate_standard_report()
     if report == "ppp":
         if (date := additionalArgs["date"]):
-            filename = f"ppp-{date}"
+            fileName = f"ppp_{date}"
             result = handle_generate_ppp_date_report(date)
         if (country := additionalArgs["country"]):
-            filename = f"ppp-{country}"
+            fileName = f"ppp_{country}"
             result = handle_generate_ppp_country_report(country)
-
-    with open(filename, 'w') as f:
-        f.write(result)
-
-
+    logger.export(result, fileName)
 
 def handle_examine_entry():
     print("Examining an individual entry...")
