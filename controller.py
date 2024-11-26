@@ -18,16 +18,12 @@ def handle_user_input(userSelection: str):
             handle_examine_entry()
         case "f":
             handle_filter_data()
-        case "s":
-            handle_sort_data()
         case "u":
             handle_upload_data()
         case "c":
-            handle_print_countries()
+            handle_submenu_c()
         case "g":
-            handle_graph_data()
-        case "d":
-            handle_print_dates()
+            handle_submenu_g()
         case "r":
             handle_print_standard_report()
         case "ppp-d":
@@ -91,9 +87,6 @@ def handle_filter_data():
         model.print_burgers(sortedBurgers)
     except Exception as e:
         print("An error occured in validating the data:", e)
-
-def handle_sort_data():
-    print("Sorting data...")
 
 def handle_print_countries():
     view.display_countries(model.get_countries())
@@ -161,9 +154,39 @@ def handle_print_ppp_country_report():
     widths = [25, 25]
     print(report.generate_report(names, data, widths))
 
-if __name__ == "__main__":
-    pass
-
-
-
+def handle_submenu_c():
+    loop = True
+    while(loop):
+        choice = input("Would you like to print dates or countries? \n(d/c): ")
+        if choice == 'c':
+            handle_print_countries()
+            loop = False
+        elif choice == 'd':
+            handle_print_dates()
+            loop = False
+        else:
+            print("Invalid input\n")
     
+def handle_submenu_g():
+    loop = True
+    choice = input("Would you like to view graphs or reports?\n(g/r): ")
+    while(loop):
+        if choice == 'g':
+            handle_graph_data()
+            loop = False
+        elif choice == 'r':
+            again = True
+            while(again):
+                pick = input("Would you like to view\nStandard Report\nCountry Report\nDate Report\n(s\c\d): ")
+                if pick == 's':
+                    handle_print_standard_report()
+                    again = False
+                elif pick == 'c':
+                    handle_print_ppp_country_report()
+                    again = False
+                elif pick == 'd':
+                    handle_print_ppp_date_report()
+                    again = False
+                else:
+                    print("Invalid Input\n")
+            loop = False
