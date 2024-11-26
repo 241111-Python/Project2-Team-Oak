@@ -1,5 +1,9 @@
 import matplotlib.pyplot as plt
 from burger import Burger
+import warnings
+
+warnings.filterwarnings( "ignore", module = "matplotlib\..*" )
+
 menuOptions = {
     "Quit": "x",
     "Examine an entry": "e", 

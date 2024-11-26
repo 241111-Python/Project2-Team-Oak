@@ -108,15 +108,19 @@ def handle_print_countries():
     view.display_countries(model.get_countries())
 
 def handle_graph_data():
-    c1 = input("Would you like to graph:\nUSD price over time \nExchange rate over time\nPPP over time\n(USD/Rate/PPP): ").lower()
-    while (c1 not in ['usd','rate','ppp']):
-        print("Invalid input")
-        c1 = input("Would you like to graph:\nUSD price over time \nExchange rate over time\nPPP over time\n(USD/Rate/PPP): ").lower()    
-    
-    c2 = input("Which Country would you like to graph? ")
-
-    while not model.validate_country(c2):
-        c2 = input("Which Country would you like to graph? ")
+    while (c1 := input("Would you like to graph:\nUSD price over time \nExchange rate over time\nPPP over time\n(USD/Rate/PPP): ").lower()):
+        if c1 not in ['usd','rate','ppp']:
+            print("Invalid input")
+        else:
+            break
+     
+    countries = model.get_countries()
+    while (c2 := input("Which Country would you like to graph? ")):
+        if c2 not in countries:
+            view.columnar_printer(countries, numRows=4)
+            print("Please select a valid Country")
+        else:
+            break
     
     if c1 == 'usd':
         view.graph_usd_year_by_country(burgerData, c2)
@@ -187,28 +191,25 @@ def handle_submenu_c():
             print("Invalid input\n")
     
 def handle_submenu_g():
-    loop = True
-    choice = input("Would you like to view graphs or reports?\n(g/r): ")
-    while(loop):
+    while (choice := input("Would you like to view graphs or reports?\nPress x to exit.(g/r/x): ")):
         if choice == 'g':
             handle_graph_data()
-            loop = False
         elif choice == 'r':
-            again = True
-            while(again):
-                pick = input("Would you like to view\nStandard Report\nCountry Report\nDate Report\n(s\c\d): ")
+            while (pick := input("Would you like to view\nStandard Report\nCountry Report\nDate Report\nPress x to exit.(s/c/d/x): ")):
                 if pick == 's':
                     handle_print_standard_report()
-                    again = False
                 elif pick == 'c':
                     handle_print_ppp_country_report()
-                    again = False
                 elif pick == 'd':
                     handle_print_ppp_date_report()
-                    again = False
+                elif pick == 'x':
+                    break
                 else:
                     print("Invalid Input\n")
-            loop = False
+        elif choice == 'x':            
+            break
+        else:
+            print(f"Invalid selection: {choice}. Try again!")
 
 def handle_generate_ppp_country_report(country: str) -> str:
     data = model.ppp_country_report(country)

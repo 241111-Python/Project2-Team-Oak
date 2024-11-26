@@ -43,10 +43,13 @@ class Model:
         return True
 
     def validate_country(self, country):
-        print("Validating country...")
-        if not re.fullmatch(r"^[A-Z][a-z]+(?: [A-Z][a-z]+)*$", country):
+        country = country.title()
+        # if not re.fullmatch(r"^[A-Z][a-z]+(?: [A-Z][a-z]+)*$", country):
+        if country in self.get_countries():
+            return True
+        else:
             raise InvalidCountry(f"{country} is not correctly formatted, or is not a string.")
-        return True
+            return False
 
     def get_mean_usd_by_date(self, date):
         lst = []
