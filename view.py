@@ -3,12 +3,10 @@ from burger import Burger
 menuOptions = {
     "Quit": "x",
     "Examine an entry": "e", 
-    "Filter on an feature": "f",
-    "Sort on a feature": "s",
+    "Filter/Sort on an feature": "f",
     "Upload data(csv only)": "u",
-    "Print countries": "c",
-    "Graph data by country": "g",
-    "Print dates": "d"
+    "Print countries or dates": "c",
+    "View graphs or reports": "g",
 }
 
 def print_menu_options():
