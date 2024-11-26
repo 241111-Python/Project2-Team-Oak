@@ -231,14 +231,3 @@ def handle_generate_ppp_date_report(date: str):
     names = ["Country", "PPP"]
     widths = [25, 25]
     return report.generate_report(names, data, widths)
-
-if __name__ == "__main__":
-    pass
-
-
-    # unpack and arrange data
-    data = [data[name] for name in names[1:]]
-    data = [dates] + data
-
-    widths = [15] * len(names)
-    return(report.generate_report(names, zip(*data), widths))
