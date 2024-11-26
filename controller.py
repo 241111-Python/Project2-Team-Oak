@@ -227,7 +227,3 @@ def handle_generate_ppp_date_report(date: str):
     names = ["Country", "PPP"]
     widths = [25, 25]
     return report.generate_report(names, data, widths)
-
-if __name__ == "__main__":
-    pass
-
