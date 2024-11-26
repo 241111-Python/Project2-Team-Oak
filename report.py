@@ -36,7 +36,7 @@ def generate_report(names, data, widths):
     result += generate_data(data, widths)
     result += divider
 
-    return result
+    return result    
 
 if __name__ == "__main__":
     names = ["abc", "a really long name", "databbb"]

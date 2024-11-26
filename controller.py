@@ -28,6 +28,12 @@ def handle_user_input(userSelection: str):
             handle_graph_data()
         case "d":
             handle_print_dates()
+        case "r":
+            handle_print_standard_report()
+        case "ppp-d":
+            handle_print_ppp_date_report()
+        case "ppp-c":
+            handle_print_ppp_country_report()
 
 def exit_game():
     sys.exit(0)
@@ -113,40 +119,50 @@ def handle_graph_data():
 def handle_print_dates():
     view.display_dates(model.get_dates())
 
-if __name__ == "__main__":
-    import statistics as stats
-
+def handle_print_standard_report():
+    names, data = model.get_standard_report_statistics()
     dates = model.get_dates()
-    names = ["Date", "Mean", "Median"]
-    means = []
-    medians = []
-    burgerData = model.sort_burgers_by_attr(model.data, "date")
-    currentDate = burgerData[0].date
-    currentUSD = []
-    for burger in burgerData:
-        if burger.date != currentDate:
-            # Process current burger data and save it in data
-            meanUSD = stats.mean(currentUSD)
-            medianUSD = stats.median(currentUSD)
-            means.append(meanUSD)
-            medians.append(medianUSD)
-            currentUSD = []
-            currentDate = burger.date
+
+    # unpack and arrange data
+    data = [data[name] for name in names[1:]]
+    data = [dates] + data
+
+    widths = [15] * len(names)
+    print(report.generate_report(names, zip(*data), widths))
+
+def handle_print_ppp_date_report():
+    dates = model.get_dates()
+    dates = [str(date) for date in dates]
+    while (date := input("Enter a date for the report: ")):
+        if date not in dates:
+            print("Date not found. Here is a selection of dates:")
+            view.columnar_printer(dates, numRows=4)
         else:
-            currentUSD.append(burger.USD)
+            break
 
-    # Process the final data
-    meanUSD = stats.mean(currentUSD)
-    means.append(meanUSD)
-    medianUSD = stats.median(currentUSD)
-    medians.append(medianUSD)
+    data = model.ppp_date_report(date)
+    data = [(str(i), str(j)) for (i, j) in data]
+    names = ["Country", "PPP"]
+    widths = [25, 25]
+    print(report.generate_report(names, data, widths))
 
+def handle_print_ppp_country_report():
+    countries = model.get_countries()
+    while (country := input("Enter a country for the report: ")):
+        if country not in countries:
+            print("Couyntry not found. Here is a selection of countries:")
+            view.columnar_printer(countries, numRows=4)
+        else:
+            break
 
+    data = model.ppp_country_report(country)
+    data = [(str(i), str(j)) for (i, j) in data]
+    names = ["Date", "PPP"]
+    widths = [25, 25]
+    print(report.generate_report(names, data, widths))
 
-    means = [str(d) for d in means]
-    medians = [str(d) for d in medians]
-    print(report.generate_report(names, zip(dates, means, medians), [15, 20, 15]))
-
+if __name__ == "__main__":
+    pass
 
 
 

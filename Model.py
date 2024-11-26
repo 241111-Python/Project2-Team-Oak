@@ -1,3 +1,4 @@
+from collections import defaultdict
 from errors import InvalidCountry, InvalidDate
 import statistics as stats
 import re
@@ -161,3 +162,27 @@ class Model:
                 if i.date == x.date:
                     ppp.append((i.date, x.USD/i.USD))
         return ppp
+    
+    def get_standard_report_statistics(self):
+        dates = self.get_dates()
+        names = ["Date", "Mean", "Median", "Standard Deviation", "Min", "Max"]
+        reportStatistics = defaultdict(list)
+        burgerData = self.sort_burgers_by_attr(self.data, "date")
+        currentDate = burgerData[0].date
+        currentUSD = []
+        for i, burger in enumerate(burgerData):
+            if burger.date != currentDate or i == len(burgerData) - 1:
+                # Process current burger data and save it in data
+                reportStatistics["Mean"].append(str(stats.mean(currentUSD)))
+                reportStatistics["Median"].append(str(stats.median(currentUSD)))
+                reportStatistics["Standard Deviation"].append(str(stats.stdev(currentUSD)))
+                reportStatistics["Min"].append(str(min(currentUSD)))
+                reportStatistics["Max"].append(str(max(currentUSD)))
+                currentUSD = []
+                currentDate = burger.date
+            else:
+                currentUSD.append(burger.USD)
+
+        return names, reportStatistics
+        # print(report.generate_report(names, zip(dates, means, medians), [15, 20, 15]))
+
