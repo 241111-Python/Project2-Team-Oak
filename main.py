@@ -1,3 +1,4 @@
+import sys
 import controller
 import view
 import argparse
@@ -31,6 +32,10 @@ if __name__ == "__main__":
                     type=str,
                     help="Specify the date (yyyy-mm-dd) for the PPP reports. Required if using \"ppp\" with \"-r\" for a country report."
                     )
+    
+    parser.add_argument("--exit", "-x",
+                        type=str,
+                        help="Run in headless mode for scripting purposes.")
 
     args = parser.parse_args()
 
@@ -43,6 +48,9 @@ if __name__ == "__main__":
         for report in args.reports:
             report = report.strip().lower()
             generated_report = controller.handle_generate_reports(report, additional_arguments)
+
+    if args.exit:
+        sys.exit(1)
 
     # Print menu options
     view.print_menu_options()
