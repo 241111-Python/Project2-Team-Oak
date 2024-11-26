@@ -29,7 +29,7 @@ if __name__ == "__main__":
     
     parser.add_argument("--date", "-d",
                     type=str,
-                    help="Specify the date (yyyy-mm-dd) for the PPP reports. Required if using \"ppp\" with \"-r\"."
+                    help="Specify the date (yyyy-mm-dd) for the PPP reports. Required if using \"ppp\" with \"-r\" for a country report."
                     )
 
     args = parser.parse_args()

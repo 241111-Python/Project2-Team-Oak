@@ -61,11 +61,9 @@ def handle_generate_reports(report: str, additionalArgs: dict) -> None:
         if (date := additionalArgs["date"]):
             filename = f"ppp-{date}"
             result = handle_generate_ppp_date_report(date)
-        elif (country := additionalArgs["country"]):
+        if (country := additionalArgs["country"]):
             filename = f"ppp-{country}"
             result = handle_generate_ppp_country_report(country)
-        else:
-            print(f"No recognized additional arguments given to ppp report. Given {additionalArgs}, but expecting keys to be either \"date\" or \"country\".")
 
     with open(filename, 'w') as f:
         f.write(result)
