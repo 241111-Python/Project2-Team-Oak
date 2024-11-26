@@ -1,3 +1,4 @@
+import datetime
 import sys
 import csv
 import view
@@ -49,6 +50,27 @@ def handle_upload_data():
                     print(row)
     else:
         print("only csv allowed now")
+
+def handle_generate_reports(report: str, additionalArgs: dict) -> None:
+    result = ""
+    fileName = ""
+    if report == "standard":
+        filename=f"standard_report.txt"
+        result = handle_generate_standard_report()
+    if report == "ppp":
+        if (date := additionalArgs["date"]):
+            filename = f"ppp-{date}"
+            result = handle_generate_ppp_date_report(date)
+        elif (country := additionalArgs["country"]):
+            filename = f"ppp-{country}"
+            result = handle_generate_ppp_country_report(country)
+        else:
+            print(f"No recognized additional arguments given to ppp report. Given {additionalArgs}, but expecting keys to be either \"date\" or \"country\".")
+
+    with open(filename, 'w') as f:
+        f.write(result)
+
+
 
 def handle_examine_entry():
     print("Examining an individual entry...")
@@ -119,7 +141,7 @@ def handle_graph_data():
 def handle_print_dates():
     view.display_dates(model.get_dates())
 
-def handle_print_standard_report():
+def handle_generate_standard_report():
     names, data = model.get_standard_report_statistics()
     dates = model.get_dates()
 
@@ -128,7 +150,10 @@ def handle_print_standard_report():
     data = [dates] + data
 
     widths = [15] * len(names)
-    print(report.generate_report(names, zip(*data), widths))
+    return report.generate_report(names, zip(*data), widths)
+
+def handle_print_standard_report():
+    print(handle_generate_standard_report())
 
 def handle_print_ppp_date_report():
     dates = model.get_dates()
@@ -150,7 +175,7 @@ def handle_print_ppp_country_report():
     countries = model.get_countries()
     while (country := input("Enter a country for the report: ")):
         if country not in countries:
-            print("Couyntry not found. Here is a selection of countries:")
+            print("Country not found. Here is a selection of countries:")
             view.columnar_printer(countries, numRows=4)
         else:
             break
@@ -160,6 +185,20 @@ def handle_print_ppp_country_report():
     names = ["Date", "PPP"]
     widths = [25, 25]
     print(report.generate_report(names, data, widths))
+
+def handle_generate_ppp_country_report(country: str) -> str:
+    data = model.ppp_country_report(country)
+    data = [(str(i), str(j)) for (i, j) in data]
+    names = ["Date", "PPP"]
+    widths = [25, 25]
+    return report.generate_report(names, data, widths)
+
+def handle_generate_ppp_date_report(date: str):
+    data = model.ppp_date_report(date)
+    data = [(str(i), str(j)) for (i, j) in data]
+    names = ["Country", "PPP"]
+    widths = [25, 25]
+    return report.generate_report(names, data, widths)
 
 if __name__ == "__main__":
     pass
