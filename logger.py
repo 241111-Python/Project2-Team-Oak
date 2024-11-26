@@ -3,7 +3,7 @@ from datetime import datetime
 import csv
 
 def export(report):
-    file = f".\logged_reports\s_report_{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
+    file = f"C:\Revature\Project2-Team-Oak\logged_reports\s_report_{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
     with open(file,'w') as f:
         f.write(report)
 
