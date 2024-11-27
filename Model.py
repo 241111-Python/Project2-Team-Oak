@@ -163,7 +163,11 @@ class Model:
         for i in lst:
             for x in rel:
                 if i.date == x.date:
-                    ppp.append((i.date, x.USD/i.USD))
+                    try:
+                        ppp.append((i.date, x.USD/i.USD))
+                    except ZeroDivisionError as e:
+                        ppp.append((i.date, 0))
+                        print("Zero division error occured", e)
         return ppp
     
     def get_standard_report_statistics(self):
