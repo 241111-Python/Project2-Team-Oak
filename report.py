@@ -28,14 +28,12 @@ def generate_data(data: list[list], column_widths: list[int]) -> str:
 
 def generate_report(names, data, widths):
     divider = generate_divider(widths)
-
     result = ""
     result += divider
     result += generate_header(names, widths)
     result += divider
     result += generate_data(data, widths)
     result += divider
-
     return result
 
 if __name__ == "__main__":

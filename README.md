@@ -2,6 +2,10 @@
 
 ## Project Description
 
+Economists use the price of a Big Mac as a measure of the current state of the economy. The Big Mac Index and PPP, calculated via the price of a Big Mac, is used to compare the relative strength of currencies. This project contains a data analysis tool for analyzing Big Mac data. It can be used to generate a swathe of reports and graphs related to the Big Mac Index. Users can run the program interactively to explore the data by filtering and sorting before generating reports, or headlessly by specifying which reports to produce at runtime. By using this program and analyzing the Big Mac Index, users will be able to gain insight into economic dynamics and currency exchange rates around the globe.
+
+## PPP
+
 Users will be able to access various statistics about the data set.
 - Mean and median, max and min, standard deviation, and range for the dollar price of the Big Mac on a yearly basis.
 - PPP via Big Mac price. We are interested in the purchasing power of the dollar in other countries. Suppose that P1 and P2 are the prices of a Big Mac measured in USD (relative to the given exchange rate) in the United States and a second country, respectively. You can compute the PPP for the Big Mac by the quotient PPP = P1 / P2. 
