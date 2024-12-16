@@ -51,7 +51,7 @@ def handle_generate_reports(report: str, additionalArgs: dict) -> None:
     result = ""
     fileName = ""
     if report == "standard":
-        fileName=f"standard_report.txt"
+        fileName="standard_report"
         result = handle_generate_standard_report()
     if report == "ppp":
         if (date := additionalArgs["date"]):

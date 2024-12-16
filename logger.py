@@ -4,7 +4,7 @@ from datetime import datetime
 import csv
 
 def export(report, reportName):
-    absPath = os.path.join("logged_reports", f"{reportName}_{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}")
+    absPath = os.path.join("logged_reports", f"{reportName}_{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}.txt")
   
     with open(absPath,'w') as f:
         f.write(report)
